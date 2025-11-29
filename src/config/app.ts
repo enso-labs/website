@@ -5,29 +5,46 @@ import {
   FaLinkedin,
   FaInstagram,
   FaYoutube,
-  FaMedium,
+  FaTwitch,
 } from "react-icons/fa";
 
 export const NODE_ENV = process.env.NEXT_PUBLIC_NODE_ENV || "production";
-export const WP_SERVER_URL =
-  NODE_ENV === "development"
-    ? "http://localhost:8000"
-    : "https://wp.adaptive.biz";
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 export const MEDIUM_RSS_URL = "https://medium.com/feed/@ryaneggz";
 
+
+// Social Config
 export const socialIcons = [
   {
-    Icon: FaGithub,
-    tooltip: "promptengineers-ai",
-    key: "github",
-    link: "https://github.com/promptengineers-ai",
+    Icon: FaYoutube,
+    tooltip: "@promptengineers",
+    key: "youtube",
+    link: "https://www.youtube.com/@promptengineersai",
   },
   {
-    Icon: FaGitlab,
-    tooltip: "kre8mymedia",
-    key: "gitlab",
-    link: "https://gitlab.com/kre8mymedia",
+    Icon: FaTwitch,
+    tooltip: "ryaneggz",
+    key: "twitch",
+    link: "https://www.twitch.tv/ryaneggz",
   },
+  {
+    Icon: FaInstagram,
+    tooltip: "@enso.labs",
+    key: "instagram",
+    link: "https://www.instagram.com/enso.labs/",
+  },
+  {
+    Icon: FaGithub,
+    tooltip: "enso-labs",
+    key: "github",
+    link: "https://github.com/enso-labs",
+  },
+  // {
+  //   Icon: FaGitlab,
+  //   tooltip: "kre8mymedia",
+  //   key: "gitlab",
+  //   link: "https://gitlab.com/kre8mymedia",
+  // },
   {
     Icon: FaMeetup,
     tooltip: "Plano Prompt Engineers",
@@ -40,18 +57,7 @@ export const socialIcons = [
     key: "linkedin",
     link: "https://www.linkedin.com/company/promptengineers-ai",
   },
-  {
-    Icon: FaInstagram,
-    tooltip: "@promptengineers.ai",
-    key: "instagram",
-    link: "https://www.instagram.com/promptengineers.ai/",
-  },
-  {
-    Icon: FaYoutube,
-    tooltip: "@promptengineers",
-    key: "youtube",
-    link: "https://www.youtube.com/@promptengineersai",
-  },
+  
   // {
   //   Icon: FaMedium,
   //   tooltip: "@promptengineers",

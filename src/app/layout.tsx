@@ -1,16 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
-import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Montserrat, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
-import { botScript } from "@/config/bot";
+import InitialLoadActiveUsers from "@/components/users/InitialLoadActiveUsers";
+import SessionProvider from "@/components/auth/SessionProvider";
+import { GA_ID, NODE_ENV } from "@/config/app";
+// import { botScript } from "@/config/bot";
 
-const inter = Inter({ subsets: ["latin"] });
+// Primary font - Montserrat for clean, minimal UI elements
+const montserrat = Montserrat({ 
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+
+// Futuristic font for "Be Present" headline
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space",
+});
+
 const APP_NAME = "Prompt Engineers AI";
-const APP_DEFAULT_TITLE = "Prompt Engineers AI";
-const APP_TITLE_TEMPLATE = "%s";
+const APP_DEFAULT_TITLE = "Prompt Engineers AI - Dallas Plano AI Community";
+const APP_TITLE_TEMPLATE = "%s | Prompt Engineers AI";
 const APP_DESCRIPTION =
-  "Single Source for All AI Chat Applications.";
+  "Join 1,500+ developers and tech enthusiasts in Plano, TX exploring ChatGPT, LLMs, and the future of AI. Monthly meetups focused on prompt engineering, machine learning, and AI development.";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
@@ -37,14 +53,55 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    locale: "en_US",
+    url: "https://promptengineers-ai.github.io/website/",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Prompt Engineers AI Community - Dallas Plano AI Meetup",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: {
       default: APP_DEFAULT_TITLE,
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    images: ["/images/og-image.png"],
+  },
+  keywords: [
+    "AI",
+    "ChatGPT",
+    "LLM",
+    "Machine Learning",
+    "Prompt Engineering",
+    "Dallas",
+    "Plano",
+    "Texas",
+    "Meetup",
+    "Community",
+    "Software Development",
+    "Technology",
+    "OpenAI",
+    "Langchain"
+  ],
+  authors: [{ name: "Prompt Engineers AI Community" }],
+  creator: "Prompt Engineers AI Community",
+  publisher: "Prompt Engineers AI Community",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
@@ -59,7 +116,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} ${spaceGrotesk.variable}`}>
       <Head>
         <meta
           name="apple-mobile-web-app-status-bar-style"
@@ -71,19 +128,15 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
       </Head>
-      <body className={inter.className}>
-        {children}
-        {/* <Script
-          src="https://cdn.promptengineers.ai/embed"
-          strategy="beforeInteractive"
-        />
-        <Script
-          id="bot"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: botScript }}
-        /> */}
-        {/* Load external scripts if needed */}
+      <body className="font-montserrat">
+        <SessionProvider>{children}</SessionProvider>
       </body>
+      {NODE_ENV === "production" && GA_ID && (
+        <>
+          <GoogleAnalytics gaId={GA_ID} />
+          <InitialLoadActiveUsers />
+        </>
+      )}
     </html>
   );
 }

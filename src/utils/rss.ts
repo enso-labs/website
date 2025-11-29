@@ -1,4 +1,13 @@
 import { parse } from "rss-to-json";
+import Parser from 'rss-parser';
+import * as htmlparser2 from "htmlparser2";
+
+
+export async function rssParser(url: string) {
+    const parser = new Parser();
+    const feed = await parser.parseURL(url);
+    return feed;
+}
 
 export async function rssToJson(
   url: string,
@@ -18,22 +27,22 @@ export async function rssToJson(
 
                 // Extract all image URLs
                 while ((match = imgRegex.exec(content)) !== null) {
-                imageUrls.push(match[1]);
+                    imageUrls.push(match[1]);
                 }
 
                 // Add the 'images' property to the item object
                 item.images = imageUrls;
 
                 // Regular expression to find the first <p> tag and extract its content
-                const pRegex = /<p>(.*?)<\/p>/s;
+                const pRegex = /<p>(.*?)<\/p>/;
                 const pMatch = pRegex.exec(content);
 
                 if (pMatch && pMatch[1]) {
-                // Create an excerpt of the first 200 characters of the first paragraph
-                item.excerpt = pMatch[1].substr(0, excerptLength);
+                    // Create an excerpt of the first 200 characters of the first paragraph
+                    item.excerpt = pMatch[1].substr(0, excerptLength);
                 } else {
-                // If no paragraph is found, set the excerpt to an empty string
-                item.excerpt = "";
+                    // If no paragraph is found, set the excerpt to an empty string
+                    item.excerpt = "";
                 }
 
                 // Remove HTML tags from the excerpt
@@ -54,4 +63,24 @@ export async function rssToJson(
     } catch (error) {
         console.error("Error fetching or processing data:", error);
     }
+}
+
+export function extractImagesToJson(htmlString: string) {
+  const images: any[] = [];
+  const parser = new htmlparser2.Parser({
+    onopentag(name, attribs) {
+      if (name === "img") {
+        images.push({
+          src: attribs.src || null,
+          alt: attribs.alt || null,
+          title: attribs.title || null
+        });
+      }
+    }
+  }, { decodeEntities: true });
+
+  parser.write(htmlString);
+  parser.end();
+
+  return images;
 }

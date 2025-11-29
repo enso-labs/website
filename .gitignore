@@ -41,4 +41,12 @@ public/swe-*.js
 public/fallback-*.js
 public/workbox-*.js
 
-.env*
+**/.env*
+**/.worktrees/
+**/.play*
+**/*.map
+
+# openpsec
+**/openspec/
+**/AGENTS.md
+**/CLAUDE.md

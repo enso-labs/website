@@ -12,12 +12,12 @@ const projects = [
     link: "https://www.meetup.com/plano-prompt-engineers",
   },
   {
-    title: "Prompt Engineers AI - Open Source",
+    title: "Enso - Open Source",
     image:
       "https://github.com/ryaneggz/static/blob/main/pe-oss-gh-page.png?raw=true",
     description:
       "Open-source AI projects to help you build better chatbots, faster. Get started with our pre-built templates, or dive into the code to customize your own.",
-    link: "https://github.com/promptengineers-ai",
+    link: "https://github.com/enso-labs",
   },
   {
     title: "Prompt Engineers AI - Legacy",
@@ -25,7 +25,7 @@ const projects = [
       "https://github.com/ryaneggz/static/blob/main/promptenigineers-landing.jpg?raw=true",
     description:
       "Elevate your workflows with AI-driven chats that turn talk into tasks. Design, automate, and innovate in a chat – where every message moves mountains.",
-    link: "https://promptengineers.ai",
+    link: "https://enso.sh",
   },
 ];
 
@@ -41,7 +41,7 @@ const ProjectSection = () => {
   return (
     <section className="bg-black py-12" id="projects">
       <div className="container mx-auto px-4">
-        <h2 className="mb-8 text-3xl font-semibold text-white">Community First</h2>
+        <h2 className="mb-8 text-4xl md:text-5xl font-semibold text-white">Community First</h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {currentProjects.map((project, index) => (
             <div
