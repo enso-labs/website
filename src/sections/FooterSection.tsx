@@ -1,18 +1,19 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { apiClient } from "@/utils/client";
+import { socialIcons } from "@/config/app";
 
 const FooterSection = () => {
-	const [email, setEmail] = useState('');
-	const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
-	const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // Call the API to submit the subscribe form
       await apiClient.subscribeToNewsletter({email});
-      // Reset the form
       setEmail('');
       setLoading(false);
     } catch (error) {
@@ -23,39 +24,137 @@ const FooterSection = () => {
   };
 
   return (
-    <footer className="bg-black pb-16 pt-10 md:py-12 text-gray-300">
-      <div className="container mx-auto px-6 md:flex md:items-center md:justify-between">
-        <div className="mb-6 md:mb-0">
-          <h2 className="mb-2 text-center text-xl font-bold md:text-left">
-            Subscribe to Our Newsletter
-          </h2>
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col justify-center sm:flex-row md:justify-start"
-          >
-            <input
-              type="email"
-              className="focus:shadow-outline mr-2 w-full rounded border border-gray-700 bg-gray-800 px-4 py-2 leading-tight text-white focus:outline-none sm:w-auto"
-              placeholder="Enter your email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <button
-              type="submit"
-              className="focus:shadow-outline mt-2 rounded bg-indigo-500 px-4 py-2 text-white transition-colors duration-150 hover:bg-indigo-700 focus:outline-none sm:mt-0"
-            >
-              {loading ? (
-                <>
-                  <div className="flex items-center justify-center">
-                    <div className="mr-2 inline-block h-5 w-5 animate-spin rounded-full border-4 border-solid border-white border-t-transparent"></div>
-                    <span>Subscribing...</span>
-                  </div>
-                </>
-              ) : (
-                "Subscribe"
-              )}
-            </button>
-          </form>
+    <footer className="bg-black border-t border-gray-900 text-gray-400">
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          {/* Brand Column */}
+          <div className="col-span-1">
+            <div className="flex items-center mb-4">
+              <div className="w-10 h-10 relative">
+                <Image
+                  src="/images/logo-bg.png"
+                  alt="Orchestra Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="ml-3 text-xl font-cormorant font-medium text-white">
+                Orchestra
+              </span>
+            </div>
+            <p className="text-sm font-montserrat text-gray-500 leading-relaxed">
+              Build your AI digital workforce with intelligent agents powered by LangChain DeepAgents.
+            </p>
+          </div>
+
+          {/* Product Column */}
+          <div>
+            <h3 className="text-white font-montserrat font-medium mb-4">Product</h3>
+            <ul className="space-y-2 font-montserrat text-sm">
+              <li>
+                <Link href="https://chat.enso.sh/register" className="hover:text-white transition-colors duration-200">
+                  Get Started
+                </Link>
+              </li>
+              <li>
+                <Link href="https://chat.enso.sh/login" className="hover:text-white transition-colors duration-200">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link href="/#features" className="hover:text-white transition-colors duration-200">
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link href="/#pricing" className="hover:text-white transition-colors duration-200">
+                  Pricing
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources Column */}
+          <div>
+            <h3 className="text-white font-montserrat font-medium mb-4">Resources</h3>
+            <ul className="space-y-2 font-montserrat text-sm">
+              <li>
+                <Link href="/blogs" className="hover:text-white transition-colors duration-200">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <a href="https://github.com/enso-labs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
+                  GitHub Projects
+                </a>
+              </li>
+              <li>
+                <Link href="/#faq" className="hover:text-white transition-colors duration-200">
+                  Community
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className="hover:text-white transition-colors duration-200">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Newsletter Column */}
+          <div>
+            <h3 className="text-white font-montserrat font-medium mb-4">Stay Updated</h3>
+            <p className="text-sm font-montserrat text-gray-500 mb-4">
+              Get the latest updates and news.
+            </p>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+              <input
+                type="email"
+                className="w-full rounded-lg border border-gray-800 bg-gray-900 px-4 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-gray-700 transition-colors font-montserrat"
+                placeholder="Enter your email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                required
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-lg bg-white text-black px-4 py-2 text-sm font-montserrat font-medium hover:bg-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? "Subscribing..." : "Subscribe"}
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-gray-900">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Copyright */}
+            <p className="text-sm font-montserrat text-gray-600">
+              © {new Date().getFullYear()} Enso Labs. All rights reserved.
+            </p>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-4">
+              {socialIcons.map((social) => {
+                const Icon = social.Icon;
+                return (
+                  <a
+                    key={social.key}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-white transition-colors duration-200"
+                    aria-label={social.tooltip}
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </footer>

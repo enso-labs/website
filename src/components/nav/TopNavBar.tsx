@@ -43,8 +43,7 @@ const TopNavbar = () => {
   // Define menu items in one place for consistency
   const menuItems = [
     { href: "/", label: "Home" },
-    // { href: "/#about", label: "About" },
-    // { href: "/blog", label: "Blog" }
+    { href: "/blogs", label: "Blog" }
   ];
 
   return (
@@ -80,29 +79,40 @@ const TopNavbar = () => {
               </a>
             </motion.div>
             
-            {/* Mobile menu button */}
-            {/* <motion.button 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleDrawer} 
-              className="flex items-center justify-center rounded-full bg-gray-800/70 p-2 text-white hover:bg-gray-700/70 transition-colors duration-200 sm:hidden"
-              aria-label="Open menu"
-            >
-              <MdMenu className="h-6 w-6" />
-            </motion.button> */}
-            
-            {/* Desktop menu */}
-            {/* <div className="hidden sm:flex items-center space-x-1">
-              
+            {/* Desktop and Mobile menu */}
+            <div className="flex items-center space-x-4">
+              {/* Blog link - desktop only */}
+              <div className="hidden md:flex items-center space-x-6">
+                {menuItems.map((item) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    whileHover={{ scale: 1.05 }}
+                    className="text-sm font-montserrat text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Login and Register - visible on all screens */}
               <motion.a
-                href="/#contact"
+                href="https://chat.enso.sh/login"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="ml-2 rounded-full bg-white text-black px-5 py-2 text-sm font-montserrat tracking-wide font-medium shadow-lg shadow-white/10 hover:bg-gray-200 transition-all duration-200"
+                className="text-sm font-montserrat text-gray-300 hover:text-white transition-colors duration-200"
               >
-                Join Beta
+                Login
               </motion.a>
-            </div> */}
+              <motion.a
+                href="https://chat.enso.sh/register"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="rounded-full bg-white text-black px-5 py-2 text-sm font-montserrat tracking-wide font-medium shadow-lg shadow-white/10 hover:bg-gray-200 transition-all duration-200"
+              >
+                Sign Up Free
+              </motion.a>
+            </div>
           </div>
         </div>
       </motion.nav>

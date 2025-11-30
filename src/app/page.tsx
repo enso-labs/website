@@ -1,5 +1,12 @@
 import TopNavBar from "@/components/nav/TopNavBar";
 import HeroSection from "@/sections/HeroSection";
+import FeaturesOverviewSection from "@/sections/FeaturesOverviewSection";
+import ProductShowcaseSection from "@/sections/ProductShowcaseSection";
+import PricingSection from "@/sections/PricingSection";
+import SocialProofSection from "@/sections/SocialProofSection";
+import FAQSection from "@/sections/FAQSection";
+import CTASection from "@/sections/CTASection";
+import FooterSection from "@/sections/FooterSection";
 
 export default function Home() {
   return (
@@ -9,6 +16,13 @@ export default function Home() {
       </header>
       <main>
         <HeroSection />
+        <FeaturesOverviewSection />
+        <ProductShowcaseSection />
+        <PricingSection />
+        <SocialProofSection />
+        <FAQSection />
+        <CTASection />
+        <FooterSection />
       </main>
     </>
   );
