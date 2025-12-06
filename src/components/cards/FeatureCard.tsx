@@ -22,16 +22,16 @@ export default function FeatureCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       onClick={onClick}
-      className={`group p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-gray-700 transition-all duration-300 ${onClick ? "cursor-pointer hover:scale-105" : ""}`}
+      className={`group p-6 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 ${onClick ? "cursor-pointer hover:scale-105" : ""}`}
     >
       <div className="flex flex-col items-center text-center space-y-4">
         <div className="p-3 rounded-xl bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
-          <Icon className="w-8 h-8 text-purple-400" />
+          <Icon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
         </div>
-        <h3 className="text-xl font-cormorant font-semibold text-white">
+        <h3 className="text-xl font-cormorant font-semibold text-card-foreground">
           {title}
         </h3>
-        <p className="text-sm font-montserrat text-gray-400 leading-relaxed">
+        <p className="text-sm font-montserrat text-muted-foreground leading-relaxed">
           {description}
         </p>
       </div>

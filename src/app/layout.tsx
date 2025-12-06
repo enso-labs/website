@@ -5,6 +5,7 @@ import "./globals.css";
 import Head from "next/head";
 import InitialLoadActiveUsers from "@/components/users/InitialLoadActiveUsers";
 import { GA_ID, NODE_ENV } from "@/config/app";
+import { ThemeProvider } from "@/components/theme-provider";
 // import { botScript } from "@/config/bot";
 
 // Primary font - Montserrat for clean, minimal UI elements
@@ -74,7 +75,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className={`${montserrat.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <Head>
         <meta
           name="apple-mobile-web-app-status-bar-style"
@@ -86,7 +87,16 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
       </Head>
-      <body className="font-montserrat">{children}</body>
+      <body className="font-montserrat">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
       {NODE_ENV === "production" && GA_ID && (
         <>
           <GoogleAnalytics gaId={GA_ID} />

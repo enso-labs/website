@@ -24,7 +24,7 @@ const FooterSection = () => {
   };
 
   return (
-    <footer className="bg-black border-t border-gray-900 text-gray-400">
+    <footer className="bg-background border-t border-border text-muted-foreground">
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
@@ -39,36 +39,36 @@ const FooterSection = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="ml-3 text-xl font-cormorant font-medium text-white">
+              <span className="ml-3 text-xl font-cormorant font-medium text-foreground">
                 Orchestra
               </span>
             </div>
-            <p className="text-sm font-montserrat text-gray-500 leading-relaxed">
+            <p className="text-sm font-montserrat text-muted-foreground leading-relaxed">
               Build your AI digital workforce with intelligent agents powered by LangChain DeepAgents.
             </p>
           </div>
 
           {/* Product Column */}
           <div>
-            <h3 className="text-white font-montserrat font-medium mb-4">Product</h3>
+            <h3 className="text-foreground font-montserrat font-medium mb-4">Product</h3>
             <ul className="space-y-2 font-montserrat text-sm">
               <li>
-                <Link href="https://chat.enso.sh/register" className="hover:text-white transition-colors duration-200">
+                <Link href="https://chat.enso.sh/register" className="hover:text-foreground transition-colors duration-200">
                   Get Started
                 </Link>
               </li>
               <li>
-                <Link href="https://chat.enso.sh/login" className="hover:text-white transition-colors duration-200">
+                <Link href="https://chat.enso.sh/login" className="hover:text-foreground transition-colors duration-200">
                   Login
                 </Link>
               </li>
               <li>
-                <Link href="/#features" className="hover:text-white transition-colors duration-200">
+                <Link href="/#features" className="hover:text-foreground transition-colors duration-200">
                   Features
                 </Link>
               </li>
               <li>
-                <Link href="/#pricing" className="hover:text-white transition-colors duration-200">
+                <Link href="/#pricing" className="hover:text-foreground transition-colors duration-200">
                   Pricing
                 </Link>
               </li>
@@ -77,25 +77,25 @@ const FooterSection = () => {
 
           {/* Resources Column */}
           <div>
-            <h3 className="text-white font-montserrat font-medium mb-4">Resources</h3>
+            <h3 className="text-foreground font-montserrat font-medium mb-4">Resources</h3>
             <ul className="space-y-2 font-montserrat text-sm">
               <li>
-                <Link href="/blogs" className="hover:text-white transition-colors duration-200">
+                <Link href="/blog" className="hover:text-foreground transition-colors duration-200">
                   Blog
                 </Link>
               </li>
               <li>
-                <a href="https://github.com/enso-labs" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors duration-200">
+                <a href="https://github.com/enso-labs" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-200">
                   GitHub Projects
                 </a>
               </li>
               <li>
-                <Link href="/#faq" className="hover:text-white transition-colors duration-200">
+                <Link href="/#faq" className="hover:text-foreground transition-colors duration-200">
                   Community
                 </Link>
               </li>
               <li>
-                <Link href="/#faq" className="hover:text-white transition-colors duration-200">
+                <Link href="/#faq" className="hover:text-foreground transition-colors duration-200">
                   FAQ
                 </Link>
               </li>
@@ -104,14 +104,14 @@ const FooterSection = () => {
 
           {/* Newsletter Column */}
           <div>
-            <h3 className="text-white font-montserrat font-medium mb-4">Stay Updated</h3>
-            <p className="text-sm font-montserrat text-gray-500 mb-4">
+            <h3 className="text-foreground font-montserrat font-medium mb-4">Stay Updated</h3>
+            <p className="text-sm font-montserrat text-muted-foreground mb-4">
               Get the latest updates and news.
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-2">
               <input
                 type="email"
-                className="w-full rounded-lg border border-gray-800 bg-gray-900 px-4 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-gray-700 transition-colors font-montserrat"
+                className="w-full rounded-lg border border-border bg-input px-4 py-2 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors font-montserrat"
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
@@ -120,7 +120,7 @@ const FooterSection = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-lg bg-white text-black px-4 py-2 text-sm font-montserrat font-medium hover:bg-gray-200 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-lg bg-foreground text-background px-4 py-2 text-sm font-montserrat font-medium hover:bg-muted-foreground transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Subscribing..." : "Subscribe"}
               </button>
@@ -129,10 +129,10 @@ const FooterSection = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-900">
+        <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
-            <p className="text-sm font-montserrat text-gray-600">
+            <p className="text-sm font-montserrat text-muted-foreground">
               © {new Date().getFullYear()} Enso Labs. All rights reserved.
             </p>
 
@@ -146,7 +146,7 @@ const FooterSection = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-white transition-colors duration-200"
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200"
                     aria-label={social.tooltip}
                   >
                     <Icon size={20} />

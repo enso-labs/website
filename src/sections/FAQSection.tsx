@@ -43,23 +43,23 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="border-b border-gray-800 last:border-0"
+      className="border-b border-border last:border-0"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between gap-4 text-left hover:text-white transition-colors"
+        className="w-full py-6 flex items-center justify-between gap-4 text-left hover:text-foreground transition-colors"
       >
-        <h3 className="text-lg md:text-xl font-cormorant font-semibold text-white">
+        <h3 className="text-lg md:text-xl font-cormorant font-semibold text-foreground">
           {faq.question}
         </h3>
         <MdExpandMore
-          className={`w-6 h-6 text-gray-400 flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-6 h-6 text-muted-foreground flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       <div
         className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 pb-6" : "max-h-0"}`}
       >
-        <p className="font-montserrat text-gray-400 leading-relaxed">
+        <p className="font-montserrat text-muted-foreground leading-relaxed">
           {faq.answer}
         </p>
       </div>
@@ -69,7 +69,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="relative py-24 px-4 bg-black">
+    <section id="faq" className="relative py-24 px-4 bg-background">
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -79,16 +79,16 @@ export default function FAQSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-cormorant font-light text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-cormorant font-light text-foreground mb-6">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl font-montserrat text-gray-400">
+          <p className="text-xl font-montserrat text-muted-foreground">
             Everything you need to know about Orchestra
           </p>
         </motion.div>
 
         {/* FAQ List */}
-        <div className="bg-gray-900/30 rounded-3xl p-6 md:p-8 border border-gray-800">
+        <div className="bg-card rounded-3xl p-6 md:p-8 border border-border">
           {faqs.map((faq, index) => (
             <FAQItem key={index} faq={faq} index={index} />
           ))}

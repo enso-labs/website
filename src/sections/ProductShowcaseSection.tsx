@@ -80,7 +80,7 @@ const showcaseItems = [
 
 export default function ProductShowcaseSection() {
   return (
-    <section className="relative py-24 px-4 bg-black">
+    <section className="relative py-24 px-4 bg-background">
       <div className="max-w-7xl mx-auto space-y-32">
         {showcaseItems.map((item, index) => {
           const isEven = index % 2 === 0;
@@ -104,11 +104,11 @@ export default function ProductShowcaseSection() {
                   </span>
                 </div>
 
-                <h3 className="text-3xl md:text-4xl font-cormorant font-semibold text-white">
+                <h3 className="text-3xl md:text-4xl font-cormorant font-semibold text-foreground">
                   {item.headline}
                 </h3>
 
-                <p className="text-lg font-montserrat text-gray-400 leading-relaxed">
+                <p className="text-lg font-montserrat text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
 
@@ -118,7 +118,7 @@ export default function ProductShowcaseSection() {
                       <svg className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="font-montserrat text-gray-300">{benefit}</span>
+                      <span className="font-montserrat text-muted-foreground">{benefit}</span>
                     </li>
                   ))}
                 </ul>
