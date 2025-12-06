@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MdClose, MdMenu } from "react-icons/md";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { ModeToggle } from "@/components/mode-toggle";
 
 const TopNavbar = () => {
   const [showSolidBackground, setShowSolidBackground] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
@@ -33,17 +31,8 @@ const TopNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
-
-  const closeDrawer = () => {
-    setIsDrawerOpen(false);
-  };
-
   // Define menu items in one place for consistency
   const menuItems = [
-    { href: "/", label: "Home" },
     { href: "/blog", label: "Blog" }
   ];
 
@@ -80,20 +69,18 @@ const TopNavbar = () => {
               </a>
             </motion.div>
             
-            {/* Desktop and Mobile menu */}
-            <div className="flex items-center space-x-4">
-              <div className="hidden md:flex items-center space-x-6">
-                {menuItems.map((item) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    whileHover={{ scale: 1.05 }}
-                    className="text-sm font-montserrat text-muted-foreground hover:text-foreground transition-colors duration-200"
-                  >
-                    {item.label}
-                  </motion.a>
-                ))}
-              </div>
+            {/* Menu items - visible on all screens */}
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              {menuItems.map((item) => (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-sm font-montserrat text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
 
               {/* Login and Register - visible on all screens */}
               <motion.a
@@ -108,7 +95,7 @@ const TopNavbar = () => {
                 href="https://chat.enso.sh/register"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="rounded-full bg-foreground text-background px-5 py-2 text-sm font-montserrat tracking-wide font-medium shadow-lg hover:opacity-90 transition-all duration-200"
+                className="rounded-full bg-foreground text-background px-4 py-2 text-sm font-montserrat tracking-wide font-medium shadow-lg hover:opacity-90 transition-all duration-200"
               >
                 Sign Up Free
               </motion.a>
@@ -117,7 +104,6 @@ const TopNavbar = () => {
           </div>
         </div>
       </motion.nav>
-      
     </>
   );
 };

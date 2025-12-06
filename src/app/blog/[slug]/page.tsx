@@ -4,7 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
+import './code-highlight.css';
 import TopNavbar from '@/components/nav/TopNavBar';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/posts';
 import { formatDate } from '@/utils/format';
@@ -82,7 +84,7 @@ export default function BlogPost({ params }: Props) {
         <div className="prose dark:prose-invert prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
+            rehypePlugins={[rehypeRaw, rehypeHighlight]}
           >
             {post.content}
           </ReactMarkdown>
