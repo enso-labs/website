@@ -38,7 +38,7 @@ const features = [
 
 export default function FeaturesOverviewSection() {
   return (
-    <section id="features" className="relative py-24 px-4 bg-black">
+    <section id="features" className="relative py-24 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -48,12 +48,12 @@ export default function FeaturesOverviewSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-cormorant font-light text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-cormorant font-light text-foreground mb-6">
             Everything You Need to Build Your
             <br />
             <span className="text-gold-500">AI Digital Workforce</span>
           </h2>
-          <p className="text-xl font-montserrat text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl font-montserrat text-muted-foreground max-w-3xl mx-auto">
             Orchestra provides the complete platform for creating, deploying, and managing AI agents that work for you 24/7
           </p>
         </motion.div>

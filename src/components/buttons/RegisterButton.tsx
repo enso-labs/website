@@ -14,8 +14,8 @@ export default function RegisterButton({
   const baseStyles = "inline-flex items-center justify-center px-8 py-3 rounded-full font-montserrat font-medium tracking-wide transition-all duration-200";
 
   const variantStyles = {
-    primary: "bg-white text-black hover:bg-gray-100 hover:scale-105",
-    secondary: "bg-transparent border-2 border-white text-white hover:bg-white hover:text-black"
+    primary: "bg-foreground text-background hover:opacity-90 hover:scale-105 shadow-lg hover:shadow-xl",
+    secondary: "bg-transparent border-2 border-foreground text-foreground hover:bg-foreground hover:text-background"
   };
 
   return (

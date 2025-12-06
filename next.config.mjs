@@ -23,7 +23,7 @@ const withPWA = withPWAInit({
   const nextConfig = {
     reactStrictMode: true,
     images: {
-      domains: ["cdn-images-1.medium.com", "avatars.githubusercontent.com"],
+      domains: ["cdn-images-1.medium.com", "avatars.githubusercontent.com", "github.com", "images.unsplash.com"],
     },
   };
   
