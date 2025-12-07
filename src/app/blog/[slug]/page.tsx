@@ -2,6 +2,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
@@ -24,6 +25,59 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({
     slug,
   }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = getPostBySlug(params.slug);
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://enso.sh";
+  // Fallback to a default image if no specific image is found
+  // Note: Ensure /static/social-default.png exists or use a valid URL
+  const defaultImage = `${siteUrl}/static/social-default.png`; 
+  
+  let imageUrl = post.socialImage || defaultImage;
+  
+  // Ensure absolute URL
+  if (imageUrl && !imageUrl.startsWith("http")) {
+    try {
+      imageUrl = new URL(imageUrl, siteUrl).href;
+    } catch (e) {
+      console.error("Failed to construct absolute URL for social image", e);
+      imageUrl = defaultImage;
+    }
+  }
+
+  const description = post.excerpt || post.content.slice(0, 160).replace(/\n/g, ' ').trim() + '...';
+
+  return {
+    title: post.title,
+    description: description,
+    openGraph: {
+      title: post.title,
+      description: description,
+      type: "article",
+      url: `${siteUrl}/blog/${post.slug}`,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: description,
+      images: [imageUrl],
+    },
+  };
 }
 
 export default function BlogPost({ params }: Props) {
