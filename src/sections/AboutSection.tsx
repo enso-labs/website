@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const AboutSection = () => {
@@ -22,13 +23,17 @@ const AboutSection = () => {
                 borderRadius: "10px 10px 10px 10px",
               }}
             ></div>
-            <img
+            <Image
               src="/images/ryan_egg.png"
               alt="Founder"
+              width={400}
+              height={500}
               className="relative z-10 rounded-[0px_0px_10px_10px]"
               style={{
                 filter: "drop-shadow(0px 2px 5px black)",
                 zIndex: 1,
+                width: "auto",
+                height: "auto",
               }}
             />
             <div className="absolute bottom-[-30px] z-20 rounded bg-white p-2 shadow-md md:bottom-4 md:right-4">

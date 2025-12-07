@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 // JSON data for the projects
 const projects = [
@@ -49,11 +50,14 @@ const ProjectSection = () => {
               className="group flex flex-col overflow-hidden rounded-lg bg-gray-800 shadow-md"
             >
               <div className="flex-shrink-0">
-                <img
+                <Image
                   className="h-auto w-full"
                   src={project.image}
                   alt={`Project ${startIndex + index + 1} Image`}
-                  style={{ maxHeight: "405px" }}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ maxHeight: "405px", width: "100%", height: "auto" }}
                 />
               </div>
               <div className="flex-grow p-4">

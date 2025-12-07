@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react'
 import { X } from 'lucide-react'
 
@@ -25,10 +26,12 @@ export function ImageWithPreview({
         className={`cursor-pointer ${containerClassName}`}
         onClick={() => setIsOpen(true)}
       >
-        <img 
+        <Image 
           src={src} 
           alt={alt} 
+          fill
           className={imageClassName}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
         />
       </div>
 
@@ -54,10 +57,13 @@ export function ImageWithPreview({
                     <X className="h-6 w-6" />
                     <span className="sr-only">Close</span>
                 </button>
-              <img 
+              <Image 
                 src={src} 
                 alt={alt} 
+                width={1200}
+                height={800}
                 className="max-h-[85vh] w-auto object-contain rounded-md" 
+                style={{ width: 'auto', height: 'auto' }}
                 onClick={(e) => e.stopPropagation()}
               />
             </DialogPanel>

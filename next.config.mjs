@@ -23,7 +23,28 @@ const withPWA = withPWAInit({
   const nextConfig = {
     reactStrictMode: true,
     images: {
-      domains: ["cdn-images-1.medium.com", "avatars.githubusercontent.com", "github.com", "images.unsplash.com"],
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "cdn-images-1.medium.com",
+        },
+        {
+          protocol: "https",
+          hostname: "avatars.githubusercontent.com",
+        },
+        {
+          protocol: "https",
+          hostname: "github.com",
+        },
+        {
+          protocol: "https",
+          hostname: "images.unsplash.com",
+        },
+        {
+          protocol: "https",
+          hostname: "secure.meetupstatic.com",
+        },
+      ],
     },
   };
   

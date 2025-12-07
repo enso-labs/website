@@ -48,10 +48,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
         href={`/blog/${post.slug}`}
         className="relative block aspect-video w-full overflow-hidden"
       >
-        <img
+        <Image
           src={imageSrc}
           alt={post.title}
-          className="h-full w-full rounded-t-lg object-cover"
+          fill
+          className="rounded-t-lg object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </Link>
 
