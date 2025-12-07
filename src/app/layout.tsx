@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Montserrat, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import Head from "next/head";
 import InitialLoadActiveUsers from "@/components/users/InitialLoadActiveUsers";
 import { GA_ID, NODE_ENV } from "@/config/app";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -66,6 +65,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -76,17 +78,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${montserrat.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
-      <Head>
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
-        <meta name="theme-color" content="#000" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
-      </Head>
       <body className="font-montserrat">
         <ThemeProvider
           attribute="class"
