@@ -36,7 +36,7 @@ export default function BlogPost({ params }: Props) {
   return (
     <main className="min-h-screen bg-background">
       <TopNavbar />
-      <div className="absolute inset-0 h-[50vh] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      <div className="absolute inset-0 h-[50vh] bg-[linear-gradient(to_right,#80808024_1px,transparent_1px),linear-gradient(to_bottom,#80808024_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       <article className="container relative z-10 mx-auto max-w-5xl px-4 py-32">
         <header className="mb-12">
           {post.categories && (
@@ -44,18 +44,18 @@ export default function BlogPost({ params }: Props) {
               {post.categories.map((cat) => (
                 <span
                   key={cat}
-                  className="rounded-full border border-primary/20 bg-primary/10 px-2 py-1 text-xs font-semibold text-primary"
+                  className="rounded-full border border-green-500/20 bg-green-500/10 px-2 py-1 font-space text-xs font-bold text-green-500"
                 >
                   {cat}
                 </span>
               ))}
             </div>
           )}
-          <h1 className="mb-6 text-4xl font-bold text-foreground md:text-5xl">
+          <h1 className="font-cormorant mb-6 text-4xl font-light tracking-tight text-foreground md:text-5xl">
             {post.title}
           </h1>
 
-          <div className="flex items-center text-muted-foreground">
+          <div className="flex items-center font-montserrat text-muted-foreground">
             {post.author && (
               <div className="mr-6 flex items-center">
                 {post.author.picture && (
