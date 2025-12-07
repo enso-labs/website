@@ -9,16 +9,10 @@ import { FiExternalLink } from "react-icons/fi";
 const SocialPage = () => {
   const socials = [
     {
-      name: "Discord",
+      name: "LinkedIn",
       handle: "Enso Labs",
-      icon: <FaDiscord className="text-xl" />,
-      url: "https://discord.gg/QRfjg4YNzU",
-    },
-    {
-      name: "YouTube",
-      handle: "@enso-labs",
-      icon: <FaYoutube className="text-xl" />,
-      url: "https://www.youtube.com/@enso-labs",
+      icon: <FaLinkedin className="text-xl" />,
+      url: "https://www.linkedin.com/company/enso-sh",
     },
     {
       name: "Instagram",
@@ -27,10 +21,10 @@ const SocialPage = () => {
       url: "https://instagram.com/enso.labs",
     },
     {
-      name: "LinkedIn",
-      handle: "Enso Labs",
-      icon: <FaLinkedin className="text-xl" />,
-      url: "https://www.linkedin.com/company/enso-sh",
+      name: "YouTube",
+      handle: "@enso-labs",
+      icon: <FaYoutube className="text-xl" />,
+      url: "https://www.youtube.com/@enso-labs",
     },
     {
       name: "X",
@@ -45,6 +39,12 @@ const SocialPage = () => {
       url: "https://github.com/enso-labs",
     },
     {
+      name: "Discord",
+      handle: "Enso Labs",
+      icon: <FaDiscord className="text-xl" />,
+      url: "https://discord.gg/QRfjg4YNzU",
+    },
+    {
       name: "Website",
       handle: "Enso Labs",
       icon: <FaGlobe className="text-xl" />,
@@ -57,7 +57,7 @@ const SocialPage = () => {
     //   icon: <SiTiktok className="text-xl" />,
     //   url: "https://tiktok.com/@10x.app",
     // },
-  
+
     // {
     //   name: "Threads",
     //   handle: "@10x_app",
