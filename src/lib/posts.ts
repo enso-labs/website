@@ -3,6 +3,14 @@ import path from 'path';
 import matter from 'gray-matter';
 import { Post } from '@/types/post';
 
+function extractFirstImage(content: string): string | null {
+  const mdMatch = content.match(/!\[.*?\]\((.*?)\)/);
+  if (mdMatch) return mdMatch[1];
+  const htmlMatch = content.match(/<img[^>]+src=["'](.*?)["']/);
+  if (htmlMatch) return htmlMatch[1];
+  return null;
+}
+
 export function getSortedPosts(): Post[] {
   let postsDirectory = path.join(process.cwd(), 'posts');
   
@@ -30,6 +38,8 @@ export function getSortedPosts(): Post[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { content, data } = matter(fileContents);
 
+      const socialImage = data.coverImage || extractFirstImage(content);
+
       return {
         slug,
         title: data.title as string,
@@ -37,6 +47,7 @@ export function getSortedPosts(): Post[] {
         excerpt: data.excerpt as string | undefined,
         content,
         coverImage: data.coverImage as string | undefined,
+        socialImage: socialImage as string | undefined,
         categories: data.categories as string[] | undefined,
         author: data.author as { name: string; picture: string } | undefined,
       };
@@ -63,6 +74,8 @@ export function getPostBySlug(slug: string): Post | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { content, data } = matter(fileContents);
 
+    const socialImage = data.coverImage || extractFirstImage(content);
+
     return {
       slug: realSlug,
       title: data.title as string,
@@ -70,6 +83,7 @@ export function getPostBySlug(slug: string): Post | null {
       excerpt: data.excerpt as string | undefined,
       content,
       coverImage: data.coverImage as string | undefined,
+      socialImage: socialImage as string | undefined,
       categories: data.categories as string[] | undefined,
       author: data.author as { name: string; picture: string } | undefined,
     };
