@@ -126,7 +126,7 @@
     page-break-inside: avoid; /* Avoids breaking the code block across pages */
     font-family: 'Courier New', monospace; /* Monospace font for code */
     font-size: 15px; /* Adjust font size as needed */
-    line-height: 1.6; /* Line height for readability */
+    line-height: 1.4; /* Line height for readability */
     margin-bottom: 1.6em; /* Margin below the block */
     max-width: 100%; /* Ensure it doesn't overflow its container */
     overflow: auto; /* Add horizontal scrollbar if needed */
