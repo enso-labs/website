@@ -5,8 +5,9 @@ excerpt: "Toy demos are easy. Durable, autonomous agents are not. This walkthrou
 categories: ["Agents", "API", "Infrastructure"]
 coverImage: "https://github.com/enso-labs/static/blob/master/orchestra_api_guide.png?raw=true"
 author:
-  name: "Enso Labs Team"
-  picture: "https://github.com/enso-labs.png"
+  name: "Ryan Eggleston"
+  picture: "https://avatars.githubusercontent.com/u/40816745?s=96&v=4"
+  linkedin: 
 ---
 
 Building agents often involves a lot of trial and error. At [Enso Labs](https://enso.sh), we believe in a robust "Create, Test, Deploy" workflow. Orchestra isn't just a UI; it's a powerful API platform that lets you define tools, verify them, and compose them into intelligent agents programmatically.
