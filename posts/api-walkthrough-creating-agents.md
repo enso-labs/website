@@ -1,8 +1,8 @@
 ---
-title: "Most ‘AI Agents’ Break at Step Two. Orchestra Is Built for What Comes After."
+title: "How to Build and Schedule a Real Production AI Agent with Orchestra’s API"
 date: "2025-12-14"
-excerpt: "Toy demos are easy. Durable, autonomous agents are not. This walkthrough shows the real complexity behind production agents—and how Orchestra abstracts it without hiding the power."
-categories: ["Agents", "API", "Infrastructure"]
+excerpt: "A hands-on, step-by-step guide to building, verifying, and scheduling a durable AI agent using Orchestra’s API—including tools, assistants, threads, and autonomous scheduling. Curl examples included!"
+categories: ["How-To", "API Walkthrough", "Agent Automation"]
 coverImage: "https://github.com/enso-labs/static/blob/master/orchestra_api_guide.png?raw=true"
 author:
   name: "Ryan Eggleston"
@@ -10,23 +10,21 @@ author:
   linkedin: 
 ---
 
-Building agents often involves a lot of trial and error. At [Enso Labs](https://enso.sh), we believe in a robust "Create, Test, Deploy" workflow. Orchestra isn't just a UI; it's a powerful API platform that lets you define tools, verify them, and compose them into intelligent agents programmatically.
+Building production-grade AI agents is hard. This practical guide shows you, step-by-step, how to use Orchestra’s API to:
 
-In this walkthrough, we’ll build an agent that can publish content to an external API. We will:
+- Register and test a powerful API tool (with validation for LLMs)
+- Wire tools into a persistent agent “Assistant”
+- Run your agent with a streaming response
+- Create a persistent thread for long-term context
+- Schedule your agent to run itself on a recurring basis
 
-1.  Create an API tool connected to `jsonplaceholder` to **create a blog post**.
-2.  Test the tool in isolation to ensure it works.
-3.  Test LLM invocation to see how the model reasons.
-4.  Configure a persistent Assistant with the tool.
-5.  Run the full agent via the streaming endpoint.
+All with real-world `curl` commands you can copy and try today.
 
-We'll use `curl` for all examples so you can follow along in your terminal.
+---
 
 ## Step 1: Create an API Tool
 
-First, we need to teach Orchestra how to talk to the external data source. We'll define a tool named `create_post` that sends a POST request to the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API.
-
-We'll use the `/api/tools` endpoint to register this tool. Note how we define the `args_schema` so the LLM knows exactly what arguments to provide.
+First, teach Orchestra how to talk to your chosen data source. Here, we’ll create a `create_post` API tool that publishes a blog post using [JSONPlaceholder](https://jsonplaceholder.typicode.com/):
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/tools" \
@@ -44,9 +42,9 @@ curl -X POST "https://chat.enso.sh/api/tools" \
         "args_schema": {
           "type": "object",
           "properties": {
-            "title": {"type": "string", required: true},
-            "body": {"type": "string",  required: true},
-            "userId": {"type": "integer", default: 1}
+            "title": {"type": "string", "required": true},
+            "body": {"type": "string", "required": true},
+            "userId": {"type": "integer", "default": 1}
           },
           "required": ["title", "body", "userId"]
         }
@@ -55,11 +53,11 @@ curl -X POST "https://chat.enso.sh/api/tools" \
   }'
 ```
 
-The system now knows that `create_post` means "Perform a POST request to `https://jsonplaceholder.typicode.com/posts`" with the specified payload structure.
+This endpoint registers the tool and its required arguments for model-safe calling.
 
-## Step 2: Verify the Tool
+## Step 2: Test the Tool Directly
 
-Before we let an AI loose with this tool, let's make sure it actually works. Orchestra provides a `/api/tools/invoke` endpoint that lets you execute tools directly.
+Verify your tool works as expected by calling `/api/tools/invoke` directly:
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/tools/invoke" \
@@ -77,27 +75,11 @@ curl -X POST "https://chat.enso.sh/api/tools/invoke" \
   ]'
 ```
 
-**Response (truncated):**
+You should see a generated object: if you do, your grounding tool works!
 
-```json
-{
-  "tools": [
-    {
-      "name": "create_post",
-      "result": "{\"id\": 101, \"title\": \"My New Agent\", \"body\": \"This was created by an agent.\", \"userId\": 1}",
-      ...
-    }
-  ]
-}
-```
+## Step 3: LLM-Driven Tool Use
 
-If you see the created object in the result, your tool is working!
-
-## Step 3: Test LLM Invocation
-
-Now let's verify that an LLM can understand and use this tool. We'll use `/api/llm/invoke` for a stateless interaction.
-
-Since we've already persisted `create_post` in Step 1, we only need to pass the **name** of the tool in the `tools` array. The system will look up the definition for us.
+Now prove the LLM can use your tool through `/api/llm/invoke`:
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/llm/invoke" \
@@ -114,17 +96,11 @@ curl -X POST "https://chat.enso.sh/api/llm/invoke" \
   }'
 ```
 
-The model should respond by calling the `create_post` tool with appropriate arguments.
+The model should call the `create_post` tool—check its arguments in the output.
 
-## Step 4: Configure an Assistant
+## Step 4: Create a Production-Ready Assistant
 
-Passing tool names in every request is fine for testing, but for production, we want a persistent **Assistant**.
-
-We'll create an assistant with:
-
-- A snake_case name: `blog_writer_bot`.
-- Our `create_post` tool.
-- Empty configurations for `mcp`, `a2a`, and `subagents` (just to show they exist).
+Don’t want to pass tools on every call? Define an **Assistant** (an agent spec) once:
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/assistants" \
@@ -142,21 +118,11 @@ curl -X POST "https://chat.enso.sh/api/assistants" \
   }'
 ```
 
-**Response:**
+You’ll get back an `assistant_id`—save it!
 
-```json
-{
-  "assistant_id": "8e4db28c-be8f-4a44-92e7-b8ccd841d6cc"
-}
-```
+## Step 5: Run the Agent, See the Stream
 
-Save that `assistant_id`! It encapsulates all the configuration we just defined.
-
-## Step 5: Run the Agent
-
-Finally, let's interact with our deployed agent. We'll use the `/api/llm/stream` endpoint.
-
-We simply pass the `assistant_id` in the metadata. The backend automatically loads the model, system prompt, and tools.
+Kick off a session and watch a full agent run (streamed in real time):
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/llm/stream" \
@@ -174,17 +140,11 @@ curl -X POST "https://chat.enso.sh/api/llm/stream" \
   }'
 ```
 
-You will see a stream of events as the agent:
+You’ll see the agent reason, call the tool, and emit a confirmation.
 
-1.  Reasons about the request.
-2.  Calls the `create_post` tool.
-3.  Confirms the post was published.
+## Step 6: (Optional) Persistent Memory with Threads
 
-## Step 6: Create a Persistent Thread
-
-Before scheduling the agent, we want to create a **persistent thread**. This acts as a "research workspace" where the agent can maintain context over time, storing files and memories that persist across scheduled runs.
-
-We'll use the `/api/threads` endpoint. We can optionally associate it with our assistant.
+Create a research “workspace” for your agent to store memories and files across runs:
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/threads" \
@@ -198,26 +158,11 @@ curl -X POST "https://chat.enso.sh/api/threads" \
   }'
 ```
 
-**Response:**
+The `thread_id` acts as your agent’s long-term context anchor.
 
-```json
-{
-  "thread_id": "2727f69b-8acb-4c8b-a983-29d4fad7e9f5",
-  "checkpoint_id": "...",
-  "checkpoint_ns": "",
-  "assistant_id": "8e4db28c-be8f-4a44-92e7-b8ccd841d6cc"
-}
-```
+## Step 7: Schedule Autonomous Runs
 
-Save the `thread_id`! This ID represents the agent's long-term memory for this specific task.
-
-## Step 7: Schedule the Agent
-
-One of the most powerful features of Orchestra is the ability to schedule agents to run autonomously. You can set up a cron job to have your agent perform tasks at regular intervals.
-
-We'll use the `/api/schedules` endpoint to create a new schedule. We provide a `trigger` (using cron syntax) and the `task` payload.
-
-**Crucially, we pass the `thread_id` we just created.** This ensures that every time the agent runs, it has access to the history and files from previous runs, effectively building a growing knowledge base.
+Let your agent run itself—forever—on a schedule, with full access to its memory:
 
 ```bash
 curl -X POST "https://chat.enso.sh/api/schedules" \
@@ -243,26 +188,15 @@ curl -X POST "https://chat.enso.sh/api/schedules" \
   }'
 ```
 
-This will configure the agent to run every Monday at 9:00 AM inside the "Daily Blog Research" thread. It will autonomously research, write, and publish content, while retaining context from previous weeks.
+Orchestra will rerun your agent every Monday at 9am, with full thread memory.
 
-## Future: DeepAgent File System & Persistent Skills
+---
 
-We are constantly expanding the capabilities of Orchestra agents. We are especially excited about the upcoming **DeepAgent File System**, built on top of `langchain-sandbox`.
+## What’s Next: Filesystem Skills and Self-Hosting
 
-Currently, if you want an agent to follow a complex procedure or use a specific dataset, you often have to stuff that information into the system prompt. This consumes context window space and can be expensive.
+Orchestra is adding persistent file systems and execution of user scripts—letting agents natively use Python “skills” and manage local data, *without* wasting prompt tokens.
 
-With the DeepAgent File System, you will be able to:
+And for teams: our official self-hosted Docker image is now live! [Get it here.](https://github.com/enso-labs/orchestra/pkgs/container/orchestra)
 
-1.  **Save Scripts as Skills**: Upload Python scripts (e.g., `audit_report.py`) directly to the agent's file system.
-2.  **Execute Directly**: The agent can run these scripts in its sandbox environment without needing the code to be part of the prompt.
-3.  **Persist Data**: Agents can generate files (reports, charts, logs) that persist across sessions.
+Ready to start? [Explore Orchestra on GitHub.](https://github.com/enso-labs/orchestra)
 
-This architecture enables "Agent Skills" that are modular, reusable, and token-efficient. It’s a step towards agents that behave more like operating system users—capable of using tools and files natively to get the job done.
-
-## Self-Hosted Deployments
-
-We also recently released our official Docker image for self-hosted deployments! You can pull it directly from our [GitHub Container Registry](https://github.com/enso-labs/orchestra/pkgs/container/orchestra).
-
-Stay tuned for an upcoming blog post where we will dive deep into how to deploy Orchestra on your own infrastructure.
-
-Stay tuned for more updates, and check out our [GitHub repository](https://github.com/enso-labs/orchestra) to get started!
