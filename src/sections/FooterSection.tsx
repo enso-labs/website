@@ -53,12 +53,12 @@ const FooterSection = () => {
             <h3 className="text-foreground font-montserrat font-medium mb-4">Product</h3>
             <ul className="space-y-2 font-montserrat text-sm">
               <li>
-                <Link href="https://chat.enso.sh/register" className="hover:text-foreground transition-colors duration-200">
+                <Link href="https://chat.ruska.ai/register" className="hover:text-foreground transition-colors duration-200">
                   Get Started
                 </Link>
               </li>
               <li>
-                <Link href="https://chat.enso.sh/login" className="hover:text-foreground transition-colors duration-200">
+                <Link href="/login" className="hover:text-foreground transition-colors duration-200">
                   Login
                 </Link>
               </li>
@@ -85,7 +85,7 @@ const FooterSection = () => {
                 </Link>
               </li>
               <li>
-                <a href="https://github.com/enso-labs" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-200">
+                <a href="https://github.com/ruska-ai" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-200">
                   GitHub Projects
                 </a>
               </li>
@@ -133,7 +133,7 @@ const FooterSection = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <p className="text-sm font-montserrat text-muted-foreground">
-              © {new Date().getFullYear()} Enso Labs. All rights reserved.
+              © {new Date().getFullYear()} Ruska Labs. All rights reserved.
             </p>
 
             {/* Social Icons */}

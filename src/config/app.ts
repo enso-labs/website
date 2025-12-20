@@ -1,67 +1,40 @@
-import {
-  FaGithub,
-  FaGitlab,
-  FaMeetup,
-  FaLinkedin,
-  FaInstagram,
-  FaYoutube,
-  FaTwitch,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaYoutube, FaSlack } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export const NODE_ENV = process.env.NEXT_PUBLIC_NODE_ENV || "production";
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 export const MEDIUM_RSS_URL = "https://medium.com/feed/@ryaneggz";
 
-
 // Social Config
 export const socialIcons = [
   {
     Icon: FaYoutube,
-    tooltip: "@promptengineers",
+    tooltip: "@ruska-ai",
     key: "youtube",
-    link: "https://www.youtube.com/@promptengineersai",
+    link: "https://www.youtube.com/@ruska-ai",
   },
   {
-    Icon: FaTwitch,
-    tooltip: "ryaneggz",
-    key: "twitch",
-    link: "https://www.twitch.tv/ryaneggz",
-  },
-  {
-    Icon: FaInstagram,
-    tooltip: "@enso.labs",
-    key: "instagram",
-    link: "https://www.instagram.com/enso.labs/",
+    Icon: FaXTwitter,
+    tooltip: "@ruska_ai",
+    key: "x",
+    link: "https://x.com/ruska_ai",
   },
   {
     Icon: FaGithub,
-    tooltip: "enso-labs",
+    tooltip: "ruska-ai",
     key: "github",
-    link: "https://github.com/enso-labs",
+    link: "https://github.com/ruska-ai",
   },
-  // {
-  //   Icon: FaGitlab,
-  //   tooltip: "kre8mymedia",
-  //   key: "gitlab",
-  //   link: "https://gitlab.com/kre8mymedia",
-  // },
   {
-    Icon: FaMeetup,
-    tooltip: "Plano Prompt Engineers",
-    key: "meetup",
-    link: "https://www.meetup.com/Plano-Prompt-Engineers/",
+    Icon: FaSlack,
+    tooltip: "Ruska Labs Workspace",
+    key: "slack",
+    link: "https://join.slack.com/t/enso-labs-workspace/shared_invite/zt-3l2lnevo6-hOe5ZeoAz~xj7CFAJk2bzg",
   },
   {
     Icon: FaLinkedin,
-    tooltip: "Prompt Engineers AI",
+    tooltip: "Ruska Labs",
     key: "linkedin",
-    link: "https://www.linkedin.com/company/promptengineers-ai",
+    link: "https://www.linkedin.com/company/ruska-ai",
   },
-  
-  // {
-  //   Icon: FaMedium,
-  //   tooltip: "@promptengineers",
-  //   key: "youtube",
-  //   link: "https://www.youtube.com/channel/promptengineers",
-  // },
 ];

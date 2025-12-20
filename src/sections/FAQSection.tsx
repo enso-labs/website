@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     question: "Can I self-host Orchestra?",
-    answer: "Orchestra will be open-sourced in the near future! For now, we're focused on refining the platform based on user feedback. Use our hosted version at chat.enso.sh to get started today. Once open-sourced, you'll be able to review the code, contribute, and self-host if needed."
+    answer: "Orchestra will be open-sourced in the near future! For now, we're focused on refining the platform based on user feedback. Use our hosted version at chat.ruska.ai to get started today. Once open-sourced, you'll be able to review the code, contribute, and self-host if needed."
   }
 ];
 

@@ -1,6 +1,6 @@
 { 
-    "name": "Next JS Starter App",
-    "short_name": "next-js-starter-app",
+    "name": "Orchestra",
+    "short_name": "Orchestra",
     "theme_color": "#00ff00",
     "background_color": "#ffffff", 
     "display": "browser", 

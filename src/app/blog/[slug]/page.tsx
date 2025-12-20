@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://enso.sh";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ruska.ai";
   // Fallback to a default image if no specific image is found
   // Note: Ensure /static/social-default.png exists or use a valid URL
   const defaultImage = `${siteUrl}/static/social-default.png`; 

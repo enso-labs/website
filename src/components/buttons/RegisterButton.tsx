@@ -20,7 +20,7 @@ export default function RegisterButton({
 
   return (
     <Link
-      href="https://chat.enso.sh/register"
+      href="https://chat.ruska.ai/register"
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
     >
       {children}
