@@ -62,7 +62,7 @@ const TopNavbar = () => {
                   className="mr-2"
                 /> */}
                 <span className="font-cormorant text-2xl font-medium tracking-wide text-foreground transition-colors duration-200 hover:text-muted-foreground">
-                  ORCHESTRA 🪶
+                  RUSKA AI🪶
                 </span>
               </a>
             </motion.div>
