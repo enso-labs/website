@@ -29,7 +29,7 @@ export const socialIcons = [
     Icon: FaSlack,
     tooltip: "Ruska Labs Workspace",
     key: "slack",
-    link: "https://join.slack.com/t/enso-labs-workspace/shared_invite/zt-3l2lnevo6-hOe5ZeoAz~xj7CFAJk2bzg",
+    link: "https://join.slack.com/t/ruska-ai-workspace/shared_invite/zt-3l2lnevo6-hOe5ZeoAz~xj7CFAJk2bzg",
   },
   {
     Icon: FaLinkedin,

@@ -34,3 +34,50 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Blog Roadmap
+
+#### How to Pre-Configure files for Deep Agents  
+
+```py
+from deepagents import create_deep_agent
+from deepagents.middleware.filesystem import FilesystemMiddleware  
+from deepagents.backends.utils import create_file_data  
+from deepagents.backends.state import StateBackend  
+from langchain.tools import ToolRuntime
+from langchain.chat_models import init_chat_model
+from langgraph.store.memory import InMemoryStore  
+
+# Pre-configure files  
+initial_files = {  
+	"/project/README.md": create_file_data("# My Project\n\nInitial documentation."),  
+	"/project/src/app.py": create_file_data("def main():\n    print('Hello!')")  
+}  
+
+# Create runtime with pre-populated state  
+runtime = ToolRuntime(  
+	state={"messages": [], "files": initial_files},  
+	context=None,  
+	tool_call_id="tc",  
+	store=InMemoryStore(),  
+	stream_writer=lambda _: None,  
+	config={},  
+)  
+
+# Create backend with pre-configured files  
+backend = StateBackend(runtime)
+model = init_chat_model(model="openai:gpt-4.1-mini")
+agent = create_deep_agent(backend=backend, model=model)
+input = {
+	"messages": [{"role": "user", "content": "List the project files."}],
+	"files": initial_files,
+}
+for chunk in agent.stream(  
+	input,  
+	config={"configurable": {"thread_id": "openai"}},  # Dual-mode for HITL support  
+	stream_mode=["values"],
+
+): 
+	if "messages" in chunk:
+		chunk["messages"][-1].pretty_print()
+```
