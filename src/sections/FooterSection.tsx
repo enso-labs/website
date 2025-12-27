@@ -36,11 +36,11 @@ const FooterSection = () => {
                   src="/images/ruska_logo_200.png"
                   alt="Orchestra Logo"
                   fill
-                  className="object-contain"
+                  className="object-contain rounded-full"
                 />
               </div>
               <span className="ml-3 text-xl font-cormorant font-medium text-foreground">
-                Orchestra
+                RUSKA AI
               </span>
             </div>
             <p className="text-sm font-montserrat text-muted-foreground leading-relaxed">

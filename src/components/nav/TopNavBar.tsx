@@ -32,7 +32,11 @@ const TopNavbar = () => {
   }, []);
 
   // Define menu items in one place for consistency
-  const menuItems = [{ href: "/blog", label: "Blog" }];
+  const menuItems = [
+    { href: "/blog", label: "Blog" },
+    { href: "#pricing", label: "Pricing" },
+    { href: "#enterprise", label: "Enterprise" },
+  ];
 
   return (
     <>
@@ -59,7 +63,7 @@ const TopNavbar = () => {
                   alt="Orchestra Logo"
                   width={24}
                   height={24}
-                  className="mr-2"
+                  className="mr-2 rounded-full"
                 />
                 <span className="font-cormorant text-2xl font-medium tracking-wide text-foreground transition-colors duration-200 hover:text-muted-foreground">
                   RUSKA AI
@@ -81,14 +85,14 @@ const TopNavbar = () => {
               ))}
 
               {/* App Link - visible on all screens */}
-              <motion.a
+              {/* <motion.a
                 href="https://chat.ruska.ai"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="rounded-full bg-foreground px-4 py-2 font-montserrat text-sm font-medium tracking-wide text-background shadow-lg transition-all duration-200 hover:opacity-90"
               >
                 Build Now
-              </motion.a>
+              </motion.a> */}
               <ModeToggle />
             </div>
           </div>

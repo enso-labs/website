@@ -26,11 +26,15 @@ const faqs = [
   },
   {
     question: "How does pricing work?",
-    answer: "During beta, Orchestra is completely free with full feature access. After beta, we'll introduce a simple $9.99/month plan. Beta users will receive special pricing and grandfathered benefits as a thank you for helping us improve the platform."
+    answer: "Orchestra Community is free forever - self-host with full features under the Apache 2.0 license. For enterprises needing managed deployment, SSO, compliance features, and dedicated support, contact us for custom pricing based on your organization's needs."
   },
   {
     question: "Can I self-host Orchestra?",
-    answer: "Orchestra will be open-sourced in the near future! For now, we're focused on refining the platform based on user feedback. Use our hosted version at chat.ruska.ai to get started today. Once open-sourced, you'll be able to review the code, contribute, and self-host if needed."
+    answer: "Yes! Orchestra is fully open-source under the Apache 2.0 license. You can self-host today using our Docker images (ghcr.io/ruska-ai/orchestra:latest) or use our managed cloud at chat.ruska.ai. The complete source code is available on GitHub for review, contribution, and customization."
+  },
+  {
+    question: "Do you offer enterprise support?",
+    answer: "Yes. For organizations needing managed deployment, SSO integration, compliance features, or dedicated support, we offer enterprise partnerships. We work closely with your team to deploy Orchestra inside your infrastructure and integrate with your existing tools. Contact us to discuss your requirements."
   }
 ];
 

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import RegisterButton from "@/components/buttons/RegisterButton";
 import { MdAutoAwesome } from "react-icons/md";
 
@@ -24,11 +25,11 @@ export default function CTASection() {
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/20 px-4 py-2"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/20 px-4 py-2"
             >
-              <MdAutoAwesome className="h-5 w-5 text-purple-600 dark:text-purple-300" />
-              <span className="font-montserrat text-sm font-medium text-purple-700 dark:text-purple-200">
-                Free Beta Access Available Now
+              <MdAutoAwesome className="h-5 w-5 text-green-600 dark:text-green-300" />
+              <span className="font-montserrat text-sm font-medium text-green-700 dark:text-green-200">
+                Open-Source & Enterprise Ready
               </span>
             </motion.div>
 
@@ -52,8 +53,8 @@ export default function CTASection() {
               className="mx-auto mb-10 max-w-2xl font-montserrat text-xl text-muted-foreground"
             >
               Join hundreds of developers and teams using Orchestra to automate
-              their workflows with intelligent AI agents. Start building for
-              free today.
+              their workflows with intelligent AI agents. Self-host for free or
+              let us deploy it for you.
             </motion.p>
 
             <motion.div
@@ -61,11 +62,17 @@ export default function CTASection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex justify-center"
+              className="flex flex-col sm:flex-row justify-center gap-4"
             >
               <RegisterButton className="px-10 py-4 text-lg">
-                Get Started Free
+                Start Building Free
               </RegisterButton>
+              <Link
+                href="#enterprise"
+                className="inline-flex items-center justify-center rounded-xl border border-gray-600 px-10 py-4 font-montserrat text-lg font-medium text-foreground transition-all duration-200 hover:bg-gray-800/50 hover:border-gray-500"
+              >
+                Talk to Sales
+              </Link>
             </motion.div>
 
             <motion.p
@@ -75,7 +82,7 @@ export default function CTASection() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mt-6 font-montserrat text-sm text-muted-foreground"
             >
-              No credit card required • Full access during beta • Cancel anytime
+              Apache 2.0 License • Self-Host or Cloud • Enterprise Support Available
             </motion.p>
           </div>
         </motion.div>
