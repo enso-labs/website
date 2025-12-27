@@ -19,13 +19,13 @@ const showcaseItems = [
   {
     icon: MdSmartToy,
     title: "Assistants",
-    headline: "Specialized AI Agents with Superpowers",
-    description: "Create custom AI assistants tailored to specific tasks. Connect MCP tools for browser automation, file access, and more. Enable agent-to-agent communication for complex workflows.",
+    headline: "Deep Agents for Production Workloads",
+    description: "Build agents designed for long-running, production tasks. Use Python code mode to write and execute scripts directly. Add files for context or create reusable Python tools in the sandbox that integrate with your existing MCP toolsets.",
     benefits: [
+      "Python code mode with sandbox execution",
+      "File system for context and script reuse",
       "Multi-model support (Claude, GPT, Gemini, Groq)",
-      "MCP tool integration",
-      "A2A protocol for agent collaboration",
-      "Public or private sharing"
+      "MCP tools + A2A agent collaboration"
     ]
   },
   {
@@ -43,25 +43,25 @@ const showcaseItems = [
   {
     icon: MdCalendarToday,
     title: "Schedules",
-    headline: "Automate Your AI Workforce",
-    description: "Set up recurring tasks with cron expressions. Your agents work 24/7, handling routine operations while you focus on what matters.",
+    headline: "Deep Agents That Run Continuously",
+    description: "Schedule your deep agents to run on cron intervals. Agents use the file system to persist context between runs, refine their Python tools over time, and progressively improve at recurring tasks.",
     benefits: [
-      "Flexible cron scheduling",
-      "Per-schedule agent configuration",
-      "Execution history tracking",
-      "Instant or delayed triggers"
+      "Cron-based recurring execution",
+      "File system for cross-run memory",
+      "Progressive tool refinement",
+      "Execution history and logs"
     ]
   },
   {
     icon: MdDescription,
     title: "Prompts",
-    headline: "Reusable System Instructions",
-    description: "Build a library of proven prompts for consistent agent behavior. Share publicly or keep private. Version and refine your prompting strategies over time.",
+    headline: "Reusable Prompt Templates",
+    description: "Build a library of templates for both system instructions and user queries. Search your saved prompts instead of retyping. Turn repetitive chat requests into form-based inputs with template variables.",
     benefits: [
-      "Template library management",
-      "Public and private prompts",
-      "Easy agent assignment",
-      "Best practices sharing"
+      "Templates for system prompts and queries",
+      "Searchable prompt library",
+      "Form-based inputs via template variables",
+      "Public or private sharing"
     ]
   },
   {

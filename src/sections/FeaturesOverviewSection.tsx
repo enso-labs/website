@@ -12,7 +12,7 @@ const features = [
   {
     icon: MdSmartToy,
     title: "Assistants",
-    description: "Deploy specialized AI agents with MCP tools and A2A communication"
+    description: "Deploy deep agents for long-running tasks with Python code mode, file context, and MCP tools"
   },
   {
     icon: MdMessage,
@@ -22,12 +22,12 @@ const features = [
   {
     icon: MdCalendarToday,
     title: "Schedules",
-    description: "Automate agents to run on cron schedules for recurring tasks"
+    description: "Run deep agents on cron schedules that persist context and refine tools over time"
   },
   {
     icon: MdDescription,
     title: "Prompts",
-    description: "Build and share reusable system prompts for consistent agent behavior"
+    description: "Create reusable templates for system instructions and user queries. Search and reuse instead of retyping."
   },
   {
     icon: MdBuild,

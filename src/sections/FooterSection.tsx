@@ -33,7 +33,7 @@ const FooterSection = () => {
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 relative">
                 <Image
-                  src="/images/logo-bg.png"
+                  src="/images/ruska_logo_200.png"
                   alt="Orchestra Logo"
                   fill
                   className="object-contain"

@@ -54,15 +54,15 @@ const TopNavbar = () => {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <a href="/" className="ml-2 flex items-center">
-                {/* <Image
-                  src="/images/logo-bg.png"
+                <Image
+                  src="/images/ruska_logo_200.png"
                   alt="Orchestra Logo"
-                  width={36}
-                  height={36}
+                  width={24}
+                  height={24}
                   className="mr-2"
-                /> */}
+                />
                 <span className="font-cormorant text-2xl font-medium tracking-wide text-foreground transition-colors duration-200 hover:text-muted-foreground">
-                  RUSKA AI🪶
+                  RUSKA AI
                 </span>
               </a>
             </motion.div>
